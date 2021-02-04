@@ -7,7 +7,7 @@ Nova.booting((Vue, router, store) => {
     {
       name: 'nova-media-library',
       path: '/media-library',
-      component: require('./tool/'),
+      component: require('./tool/Index.vue'),
     },
   ]);
 
@@ -24,6 +24,9 @@ if ('object' === typeof Nova.config.novaMediaLibrary) {
       Object.assign(Nova.config.novaMediaLibrary, { folders: r.data })
     })
   }
+  Nova.request().get('/nova-vendor/nova-media-library/prefix').then(r => {
+    Object.assign(Nova.config.novaMediaLibrary, { prefix: r.data.prefix })
+  })
   if ('object' === typeof Nova.config.novaMediaLibrary.lang) {
     Object.assign(Nova.config.translations, Nova.config.novaMediaLibrary.lang)
   }

@@ -6,7 +6,7 @@
 
       <button type="button" class="nml-close select-none" @click="$parent.popup = null">&times;</button>
 
-      <Library :field="field.attribute" :isArray="field.nmlArray" :types="types" />
+      <Library :field="field.attribute" :isArray="field.nmlArray" :types="types"  :prefix="field.nmlPrefix"/>
 
     </div>
 
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Library from '../../tool/'
+import Library from '../../tool/Index.vue'
 
 export default {
   props: ['field'],
@@ -29,6 +29,6 @@ export default {
   },
   beforeDestroy() {
     document.body.classList.remove('overflow-hidden');
-  }
+    }
 }
 </script>

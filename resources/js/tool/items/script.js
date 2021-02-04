@@ -6,10 +6,10 @@ export default {
   components: { Folders },
   computed: {
     folders() {
-      return this.$parent.config.folders;
+      return this.$parent.folders;
     },
     folder() {
-      return this.$parent.filter.folder;
+      return this.$parent.folder;
     },
     getFolders() {
       let keys = Object.assign({}, this.folders);

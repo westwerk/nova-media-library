@@ -26,7 +26,7 @@ export default {
       let config = { headers: { 'Content-Type': 'multipart/form-data' } };
       let data = new FormData();
       data.append('file', file);
-      data.append('folder', this.$parent.filter.folder);
+      data.append('folder', this.$parent.folderFilter);
 
       Nova.request().post('/nova-vendor/nova-media-library/upload', data, config).then(r => {
         this.upload.done++;

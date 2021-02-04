@@ -21,6 +21,13 @@ use ClassicO\NovaMediaLibrary\Core\{
 
 class Tool {
 
+    function prefix()
+    {
+        return [
+            'prefix' => null
+        ];
+    }
+    
 	function get(GetFr $fr)
 	{
 		$preview = config('nova-media-library.resize.preview');

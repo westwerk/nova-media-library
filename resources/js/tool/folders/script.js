@@ -19,20 +19,20 @@ export default {
       let parent = this.$parent.$parent;
 
       if ( 'folder' === type ) {
-        this.$set(parent.filter, 'folder', parent.filter.folder + this.label + '/');
+        this.$set(parent, 'folder', parent.folder + this.label + '/');
         parent.clearData();
         parent.get();
       } else if ( 'back' === type ) {
-        let array = parent.filter.folder.split('/');
+        let array = parent.folder.split('/');
         array.pop();
         array.pop();
-        this.$set(parent.filter, 'folder', array.join('/') + '/');
+        this.$set(parent, 'folder', array.join('/') + '/');
         parent.clearData();
         parent.get();
       } else if ( 'remove' === type ) {
         if ( !confirm(this.__('Delete this folder?')) ) return;
 
-        Nova.request().post('/nova-vendor/nova-media-library/folder/del', { folder: parent.filter.folder }).then(r => {
+        Nova.request().post('/nova-vendor/nova-media-library/folder/del', { folder: parent.folderFilter }).then(r => {
           if ( r.data.folders )
             this.$set(this.$parent.$parent.config, 'folders', r.data.folders);
           if ( r.data.message )
@@ -46,7 +46,7 @@ export default {
         if ( !folder ) return;
 
         Nova.request().post('/nova-vendor/nova-media-library/folder/new', {
-          base: parent.filter.folder,
+          base: parent.folderFilter,
           folder: folder
         }).then(r => {
           if ( r.data.folders )

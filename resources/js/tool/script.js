@@ -4,6 +4,7 @@ import Items  from './items'
 import Loader from './loader'
 import Popup from './popup'
 import Crop from './crop'
+import _ from 'lodash'
 
 let timeout = null;
 let wheel = null;
@@ -13,6 +14,8 @@ export default {
     field: { type: String, default: null },
     isArray: { default: false },
     types: { type: Array, default: [] },
+    prefix: { type: String, default: null },
+    folder: {type: String, default: '/' }
   },
 
   components: {
@@ -46,7 +49,6 @@ export default {
         from: null,
         to: null,
         page: 0,
-        folder: 'folders' === config.store ? '/' : null
       },
       oldFilter: {},
 
@@ -55,8 +57,23 @@ export default {
       popup: null
     }
   },
-
+  computed: {
+    folders() {
+        if(this.prefix) {
+            return _.get(this.config.folders, this.prefix.split('/'));
+        }
+        
+        return this.config.folders;
+    },
+    folderFilter() {
+        return 'folders' === this.config.store ? this.fullPath(this.folder) : null
+    }
+  },
   methods: {
+    fullPath(path) {
+        let prefix = this.prefix ? this.prefix : this.config.prefix;
+        return (prefix ? '/' + prefix : '') + path;
+    },
     bulkLen() {
       return Object.keys(this.bulk.ids).length
     },
@@ -66,7 +83,14 @@ export default {
     },
     get() {
       this.loading = true;
-      Nova.request().post('/nova-vendor/nova-media-library/get', this.filter).then(r => {
+      Nova.request().post('/nova-vendor/nova-media-library/get', {
+        title: this.filter.title,
+        type: this.filter.type,
+        from: this.filter.from,
+        to: this.filter.to,
+        page: this.filter.page,
+        folder: this.folderFilter
+      }).then(r => {
         this.loading = false;
         this.items = {
           array: this.items.array.concat(r.data.array),
