@@ -36,5 +36,5 @@ export default {
     handleChange(value) {
       this.value = value
     }
-  }
+  },
 }
