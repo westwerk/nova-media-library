@@ -46,8 +46,10 @@ class NovaMediaLibrary extends Tool
 		    'store' => data_get($cfg, 'store', 'together'),
 	    ];
 
-    	if ( 'folders' == $config['store'])
+    	if ( 'folders' == $config['store']){
     		$config['folders'] = [];//Helper::directories();
+            $config['prefix'] = null;
+        }
 
 	    if ( is_array($types) ) {
 		    $accept = [];

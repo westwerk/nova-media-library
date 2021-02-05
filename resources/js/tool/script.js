@@ -58,9 +58,12 @@ export default {
     }
   },
   computed: {
+    realPrefix() {
+        return this.prefix ? this.prefix : this.config.prefix;
+    },
     folders() {
-        if(this.prefix) {
-            return _.get(this.config.folders, this.prefix.split('/'));
+        if(this.realPrefix) {
+            return _.get(this.config.folders, this.realPrefix.split('/'));
         }
         
         return this.config.folders;
@@ -71,8 +74,7 @@ export default {
   },
   methods: {
     fullPath(path) {
-        let prefix = this.prefix ? this.prefix : this.config.prefix;
-        return (prefix ? '/' + prefix : '') + path;
+        return (this.realPrefix ? '/' + this.realPrefix : '') + path;
     },
     bulkLen() {
       return Object.keys(this.bulk.ids).length
