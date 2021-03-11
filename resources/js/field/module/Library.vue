@@ -6,7 +6,7 @@
 
       <button type="button" class="nml-close select-none" @click="$parent.popup = null">&times;</button>
 
-      <Library :field="field.attribute" :isArray="field.nmlArray" :types="types"  :prefix="field.nmlPrefix"/>
+      <Library :field="field.attribute" :ratio="field.nmlRatio" :isArray="field.nmlArray" :types="types"  :prefix="field.nmlPrefix"/>
 
     </div>
 

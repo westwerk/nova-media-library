@@ -91,6 +91,11 @@ class MediaLibrary extends Field
 		return $this->withMeta([ 'nmlPreview' => $size ]);
 	}
 
+	protected function aspectRatio($ratio)
+	{
+		return $this->withMeta([ 'nmlRatio' => $ratio ]);
+	}
+
 	/**
 	 * Contain array of files. Display as list
 	 * Table column must be `TEXT` nullable

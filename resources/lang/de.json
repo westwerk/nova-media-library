@@ -23,7 +23,7 @@
 	"The file was not downloaded for unknown reasons": "Die Datei wurde aus unbekannten Gründen nicht heruntergeladen",
 	"Unsupported image type for resizing, only the original is uploaded.": "Nicht unterstützter Bildtyp für die Größenänderung, es wurde nur das Original hochgeladen.",
 
-	"Bulk Select": "Alle auswählen",
+	"Bulk Select": "Medien auswählen",
 	"Cancel": "Abbrechen",
 	"Change Display Type": "Change Display Type",
 	"Choose": "Auswählen",
@@ -45,6 +45,7 @@
 	"Open": "Öffnen",
 	"Private": "Privat",
 	"Save as new": "Als neu speichern",
+	"Save": "Speichern",
 	"Search by name": "Nach Namen suchen",
 	"Select All": "Alle auswählen",
 	"Select File": "Datei auswählen",

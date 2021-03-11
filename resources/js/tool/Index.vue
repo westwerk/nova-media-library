@@ -19,6 +19,10 @@
       <Crop v-if="item && 'crop' === popup" />
     </transition>
 
+    <transition name="fade" mode="out-in">
+      <Crop :ratio="ratio" :forced="true" v-if="item && 'ratio' === popup" />
+    </transition>
+
   </div>
 </template>
 

@@ -170,8 +170,15 @@ class Tool {
 			abort(422, __('Invalid request data'));
 
 		$crop->make();
+		
+		$item = $crop->save();
 
-		if ( $crop->save() ) return;
+        if ($item) {
+			$preview = config('nova-media-library.resize.preview');
+			$item = $item->toArray();
+			$item['preview'] = Helper::preview($item, $preview);
+            return $item;
+        }
 
 		abort(422, __('The file was not downloaded for unknown reasons'));
 	}
