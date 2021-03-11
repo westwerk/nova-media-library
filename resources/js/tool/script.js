@@ -77,12 +77,16 @@ export default {
     },
   },
   methods: {
-    checkRatio(width, height) {
-      if (!this.ratio) return true;
+    checkRatio(item) {
+      if (!this.ratio || item.options.mime === "image") return true;
+
+      const width = item.options.wh[0];
+      const height = item.options.wh[1];
       const ratio = width / height;
       if (ratio === this.ratio) return true;
-      else if (ratio > this.ratio) return width / (height + 1) < this.ratio;
-      else return height > 1 && width / (height - 1) > this.ratio;
+      else if (ratio > this.ratio)
+        return (width - 1) / (height + 1) < this.ratio;
+      else return height > 1 && (width + 1) / (height - 1) > this.ratio;
     },
     selectItem(item, force = false) {
       if (this.bulk.enable) {
@@ -93,10 +97,7 @@ export default {
         }
       } else {
         if (this.field) {
-          if (
-            !force &&
-            !this.checkRatio(item.options.wh[0], item.options.wh[1])
-          ) {
+          if (!force && !this.checkRatio(item)) {
             this.item = item;
             this.popup = "ratio";
           } else Nova.$emit(`nmlSelectFiles[${this.field}]`, [item]);
