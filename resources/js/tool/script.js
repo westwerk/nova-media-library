@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     checkRatio(item) {
-      if (!this.ratio || item.options.mime === "image") return true;
+      if (!this.ratio || item.options.mime !== "image") return true;
 
       const width = item.options.wh[0];
       const height = item.options.wh[1];
