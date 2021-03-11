@@ -91,7 +91,7 @@ class MediaLibrary extends Field
 		return $this->withMeta([ 'nmlPreview' => $size ]);
 	}
 
-	protected function aspectRatio($ratio)
+	public function aspectRatio($ratio)
 	{
 		return $this->withMeta([ 'nmlRatio' => $ratio ]);
 	}
