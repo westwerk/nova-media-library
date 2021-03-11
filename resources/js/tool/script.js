@@ -84,7 +84,7 @@ export default {
       else if (ratio > this.ratio) return width / (height + 1) < this.ratio;
       else return height > 1 && width / (height - 1) > this.ratio;
     },
-    selectItem(item) {
+    selectItem(item, force = false) {
       if (this.bulk.enable) {
         if (this.bulk.ids[item.id]) {
           this.$delete(this.bulk.ids, item.id);
@@ -93,7 +93,10 @@ export default {
         }
       } else {
         if (this.field) {
-          if (!this.checkRatio(item.options.wh[0], item.options.wh[1])) {
+          if (
+            !force &&
+            !this.checkRatio(item.options.wh[0], item.options.wh[1])
+          ) {
             this.item = item;
             this.popup = "ratio";
           } else Nova.$emit(`nmlSelectFiles[${this.field}]`, [item]);

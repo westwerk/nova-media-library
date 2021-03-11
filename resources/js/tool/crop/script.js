@@ -29,7 +29,7 @@ export default {
         .then((response) => {
           if (this.forced) {
             this.$parent.item = null;
-            this.$parent.selectItem(response.data);
+            this.$parent.selectItem(response.data, true);
           } else {
             this.$toasted.show(this.__("Image cropped successfully"), {
               type: "success",
