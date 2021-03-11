@@ -50,7 +50,7 @@ export default {
     let el = this;
     el.img = document.getElementById("cropper-img");
     el.crop = new Cropper(el.img, {
-      autoCrop: false,
+      autoCrop: this.forced,
       aspectRatio: el.ratio,
       checkCrossOrigin: false,
       guides: false,
